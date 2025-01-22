@@ -26,14 +26,36 @@ public class SpawnManager : NetworkBehaviour
 
     private void Start()
     {
-        // Automatically spawn the player when they connect (only for server)
+        // Ensure we spawn players right away when the scene is loaded
         if (IsServer)
         {
-            SpawnPlayer();
+            // This will spawn the first player for the server at the start of the scene
+            SpawnPlayerForClient(NetworkManager.Singleton.LocalClientId);
+        }
+
+        // Register to the client connected callback event for future connections
+        NetworkManager.Singleton.OnClientConnectedCallback += HandleClientConnected;
+    }
+
+    private void OnDestroy()
+    {
+        // Unregister the callback to prevent memory leaks
+        if (NetworkManager.Singleton != null)
+        {
+            NetworkManager.Singleton.OnClientConnectedCallback -= HandleClientConnected;
         }
     }
 
-    public void SpawnPlayer()
+    private void HandleClientConnected(ulong clientId)
+    {
+        // Only the server handles player spawning
+        if (IsServer)
+        {
+            SpawnPlayerForClient(clientId);
+        }
+    }
+
+    public void SpawnPlayerForClient(ulong clientId)
     {
         if (IsServer)
         {
@@ -51,8 +73,8 @@ public class SpawnManager : NetworkBehaviour
                 PlayerManager playerManager = playerInstance.GetComponent<PlayerManager>();
                 playerManager.SetTeam(team);
 
-                // Spawn the player on the network
-                playerNetworkObject.Spawn();
+                // Spawn the player object on the network and assign it to the client
+                playerNetworkObject.SpawnAsPlayerObject(clientId);
             }
         }
     }
@@ -85,11 +107,5 @@ public class SpawnManager : NetworkBehaviour
             return blueTeamSpawns[Random.Range(0, blueTeamSpawns.Length)];
         }
         return null;
-    }
-
-    // Use OnDestroy for network cleanup when the object is destroyed
-    private void OnDestroy()
-    {
-        base.OnDestroy();
     }
 }

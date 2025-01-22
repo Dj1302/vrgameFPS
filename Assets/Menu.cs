@@ -1,5 +1,6 @@
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class Menu : MonoBehaviour
         {
             NetworkManager.Singleton.StartHost();
             Debug.Log("Host started!");
+            SceneManager.LoadScene("BasicScene", LoadSceneMode.Single);
+            
         }
     }
 
@@ -17,6 +20,7 @@ public class Menu : MonoBehaviour
         if (NetworkManager.Singleton != null)
         {
             NetworkManager.Singleton.StartClient();
+            SceneManager.LoadScene("BasicScene", LoadSceneMode.Single);
             Debug.Log("Client joined!");
         }
     }

@@ -649,6 +649,8 @@ GameObject:
   - component: {fileID: 6120467556632107655}
   - component: {fileID: 7574812573520164885}
   - component: {fileID: 6509086412788222580}
+  - component: {fileID: 1893991915622623731}
+  - component: {fileID: 378008304089775888}
   m_Layer: 2
   m_Name: XR Origin (XR Rig) 1
   m_TagString: Untagged
@@ -688,7 +690,7 @@ MonoBehaviour:
   m_Camera: {fileID: 6967775031017485655}
   m_OriginBaseGameObject: {fileID: 5182646331487011522}
   m_CameraFloorOffsetObject: {fileID: 432437211007223775}
-  m_RequestedTrackingOriginMode: 0
+  m_RequestedTrackingOriginMode: 2
   m_CameraYOffset: 1.36144
 --- !u!143 &6716732626974431321
 CharacterController:
@@ -797,7 +799,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1184712299
+  GlobalObjectIdHash: 1476879457
   InScenePlacedSourceGlobalObjectIdHash: 3242939140
   DeferredDespawnTick: 0
   Ownership: 1
@@ -810,6 +812,59 @@ MonoBehaviour:
   AutoObjectParentSync: 1
   SyncOwnerTransformWhenParented: 1
   AllowOwnerToParent: 0
+--- !u!114 &1893991915622623731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5182646331487011522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  NetworkTransformExpanded: 0
+  AuthorityMode: 0
+  TickSyncChildren: 0
+  UseUnreliableDeltas: 0
+  SyncPositionX: 1
+  SyncPositionY: 1
+  SyncPositionZ: 1
+  SyncRotAngleX: 1
+  SyncRotAngleY: 1
+  SyncRotAngleZ: 1
+  SyncScaleX: 1
+  SyncScaleY: 1
+  SyncScaleZ: 1
+  PositionThreshold: 0.001
+  RotAngleThreshold: 0.01
+  ScaleThreshold: 0.01
+  UseQuaternionSynchronization: 0
+  UseQuaternionCompression: 0
+  UseHalfFloatPrecision: 0
+  InLocalSpace: 0
+  SwitchTransformSpaceWhenParented: 0
+  Interpolate: 1
+  SlerpPosition: 0
+--- !u!114 &378008304089775888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5182646331487011522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 648816a41729b3547883deed177326f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  maxHealth: 100
+  isSpawnProtected: 1
+  spawnProtectionTime: 5
+  team: 
 --- !u!1 &5401228802684398368
 GameObject:
   m_ObjectHideFlags: 0
